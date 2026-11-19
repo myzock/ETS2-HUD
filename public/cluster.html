@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#050505">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" type="image/png" href="/icons/favicon-48.png">
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-title" content="ETS2 HUD">
+  <meta name="screen-orientation" content="landscape">
+  <meta name="full-screen" content="yes">
+  <title>ETS2 HUD · Tablero</title>
+  <link rel="stylesheet" href="cluster.css">
+</head>
+<body>
+  <div id="cluster">
+
+    <!-- Testigos -->
+    <div class="lamps">
+      <span id="i-left" class="tt arrow green" title="Giro izquierda"><svg viewBox="0 0 24 24"><path class="fill" d="M2 12l9-8v5h11v6H11v5z"/></svg></span>
+      <span class="grp">
+      <span id="i-low" class="tt green" title="Luces bajas"><svg viewBox="0 0 24 24"><path d="M13 6c3.6 0 6 2.7 6 6s-2.4 6-6 6h-1V6z"/><path d="M10 8L3 10M10 12L3 14M10 16L3 18"/></svg></span>
+      <span id="i-high" class="tt blue" title="Luces altas"><svg viewBox="0 0 24 24"><path d="M13 6c3.6 0 6 2.7 6 6s-2.4 6-6 6h-1V6z"/><path d="M10 8H2M10 12H2M10 16H2"/></svg></span>
+      <span id="i-beacon" class="tt amber" title="Baliza giratoria"><svg viewBox="0 0 24 24"><path d="M7 17a5 5 0 0 1 10 0z"/><path d="M5 20h14M12 3v3M5 6l2 2M19 6l-2 2"/></svg></span>
+      <span id="i-hazard" class="tt red" title="Balizas"><svg viewBox="0 0 24 24"><path d="M12 3L21.5 19.5H2.5z"/><path d="M12 9.5L16.3 17H7.7z"/></svg></span>
+      </span>
+      <span class="grp">
+      <span id="i-park" class="tt red" title="Freno de mano"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="6.5"/><path d="M4.5 5.5a10 10 0 0 0 0 13M19.5 5.5a10 10 0 0 1 0 13"/><text x="12" y="15.5" font-size="9">P</text></svg></span>
+      <span id="i-brake" class="tt red" title="Freno"><svg viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="10" rx="2.5"/><rect x="7" y="10" width="10" height="4" rx="1" class="fill"/></svg></span>
+      <span id="i-motor" class="tt amber" title="Freno motor"><svg viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="13" rx="3"/><text x="12" y="15.5" font-size="8.5">EB</text></svg></span>
+      <span id="i-ret" class="tt amber" title="Retarder"><svg viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="13" rx="3"/><text id="retText" x="12" y="15.5" font-size="8.5">R</text></svg></span>
+      </span>
+      <span class="grp">
+      <span id="i-diff" class="tt amber" title="Bloqueo de diferencial"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.5"/><path d="M2 12h6.5M15.5 12H22M12 3v5.5M12 15.5V21"/><path d="M5 9v6M19 9v6"/></svg></span>
+      <span id="i-lift" class="tt amber" title="Eje elevado"><svg viewBox="0 0 24 24"><circle cx="12" cy="16" r="5"/><circle cx="12" cy="16" r="1.5" class="fill"/><path d="M12 9V2M9 5l3-3 3 3"/></svg></span>
+      <span id="i-trailer" class="tt green" title="Remolque enganchado"><svg viewBox="0 0 24 24"><path d="M2 16V9h5l2 3v4z"/><rect x="11" y="5" width="11" height="11"/><circle cx="5" cy="18.5" r="1.6"/><circle cx="15" cy="18.5" r="1.6"/><circle cx="19.5" cy="18.5" r="1.6"/></svg></span>
+      <span id="i-wipers" class="tt green" title="Limpiaparabrisas"><svg viewBox="0 0 24 24"><path d="M3 17a10 10 0 0 1 18 0z"/><path d="M12 17L7.5 8.5"/></svg></span>
+      </span>
+      <span class="grp">
+      <span id="w-fuel" class="tt amber" title="Combustible bajo"><svg viewBox="0 0 24 24"><path d="M5 20V4h9v16zM3 20h13"/><path d="M7 7h5v4H7z"/><path d="M14 9h2a2 2 0 0 1 2 2v5a1.5 1.5 0 0 0 3 0V8l-3-3"/></svg></span>
+      <span id="w-adblue" class="tt amber" title="AdBlue bajo"><svg viewBox="0 0 24 24"><path d="M12 3c3 4 6.5 7.5 6.5 11a6.5 6.5 0 0 1-13 0c0-3.5 3.5-7 6.5-11z"/><text x="12" y="17" font-size="6.5">AB</text></svg></span>
+      <span id="w-air" class="tt red" title="Presión de aire"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 12L7 16.5M6 7.5l1.3 1.3M12 4.5v1.8M18 7.5l-1.3 1.3"/><circle cx="12" cy="12" r="1.3" class="fill"/></svg></span>
+      <span id="w-oil" class="tt red" title="Presión de aceite"><svg viewBox="0 0 24 24"><path d="M3 10h4l2-2h6l6-2-4.5 8H6z"/><path d="M7 8V6h3"/><path d="M20.5 16.5c0 1-.7 1.8-1.5 1.8s-1.5-.8-1.5-1.8 1.5-2.7 1.5-2.7 1.5 1.7 1.5 2.7z"/></svg></span>
+      <span id="w-water" class="tt red" title="Temperatura del motor"><svg viewBox="0 0 24 24"><path d="M12 3v9"/><circle cx="12" cy="14.5" r="2.5"/><path d="M13 5h3M13 8h3M13 11h2"/><path d="M3 21c2-1.5 4 1.5 6 0s4 1.5 6 0 4 1.5 6 0"/></svg></span>
+      <span id="w-battery" class="tt red" title="Batería"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="12" rx="1.5"/><path d="M6 7V5h3v2M15 7V5h3v2M6.5 13h4M8.5 11v4M13.5 13h4"/></svg></span>
+      </span>
+      <span id="i-right" class="tt arrow green" title="Giro derecha"><svg viewBox="0 0 24 24"><path class="fill" d="M22 12l-9-8v5H2v6h11v5z"/></svg></span>
+    </div>
+
+    <!-- Relojes -->
+    <div class="gauges">
+      <div class="gauge">
+        <svg viewBox="0 0 200 200">
+          <circle class="track" cx="100" cy="100" r="88" transform="rotate(135 100 100)"/>
+          <circle id="speedArc" class="arc" stroke-dasharray="0 552.92" cx="100" cy="100" r="88" transform="rotate(135 100 100)"/>
+          <g id="speedTicks"></g>
+          <line id="speedLimitMark" class="mark limit-mark" x1="183" y1="100" x2="200" y2="100"/>
+          <line id="speedCcMark" class="mark cc-mark" x1="183" y1="100" x2="200" y2="100"/>
+          <line id="speedNeedle" class="needle" x1="100" y1="100" x2="172" y2="100"/>
+          <circle class="hub" cx="100" cy="100" r="7"/>
+        </svg>
+        <div class="readout">
+          <div id="speed" class="value">0</div>
+          <div id="units" class="unit">km/h</div>
+        </div>
+      </div>
+
+      <div class="center">
+        <div id="limit" class="limit hidden">--</div>
+        <div class="gear-box">
+          <div class="tiny">MARCHA</div>
+          <div id="gear" class="gear">N</div>
+        </div>
+        <div id="ccBox" class="cc hidden">
+          <svg viewBox="0 0 24 24"><path d="M4.5 17.5a8.5 8.5 0 1 1 15 0"/><path d="M12 14l4.5-5"/><circle cx="12" cy="14" r="1.2" class="fill"/></svg>
+          <span id="cc">--</span>
+        </div>
+        <div id="clock" class="clock">--- --:--</div>
+      </div>
+
+      <div class="gauge">
+        <svg viewBox="0 0 200 200">
+          <circle class="track" cx="100" cy="100" r="88" transform="rotate(135 100 100)"/>
+          <circle id="rpmArc" class="arc rpm" stroke-dasharray="0 552.92" cx="100" cy="100" r="88" transform="rotate(135 100 100)"/>
+          <g id="rpmTicks"></g>
+          <line id="rpmNeedle" class="needle" x1="100" y1="100" x2="172" y2="100"/>
+          <circle class="hub" cx="100" cy="100" r="7"/>
+        </svg>
+        <div class="readout">
+          <div id="rpm" class="value small">0</div>
+          <div class="unit">rpm x100</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tira de ruta -->
+    <div class="strip">
+      <div class="cell wide">
+        <div class="tiny">DESTINO</div>
+        <div id="city" class="big">Sin trabajo</div>
+        <div id="company" class="small dim"></div>
+      </div>
+      <div class="cell">
+        <div class="tiny">DISTANCIA</div>
+        <div id="dist" class="big">--</div>
+      </div>
+      <div class="cell">
+        <div class="tiny">LLEGADA</div>
+        <div id="eta" class="big">--</div>
+      </div>
+      <div class="cell">
+        <div class="tiny">ENTREGA</div>
+        <div id="deadline" class="big">--</div>
+      </div>
+      <div class="cell">
+        <div class="tiny">DESCANSO</div>
+        <div id="rest" class="big">--</div>
+      </div>
+      <div class="cell wide">
+        <div class="tiny">COMBUSTIBLE</div>
+        <div id="fuelSegs" class="fuelsegs"><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
+        <div id="fuelText" class="small dim">--</div>
+      </div>
+    </div>
+
+
+    <div id="overlay" class="overlay">
+      <div id="overlayText">Conectando…</div>
+      <div class="hint">Tocá la pantalla para pantalla completa</div>
+    </div>
+  </div>
+
+  <script src="cluster.js"></script>
+</body>
+</html>

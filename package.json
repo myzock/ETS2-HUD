@@ -1,0 +1,32 @@
+{
+  "name": "ets2-hud",
+  "version": "1.0.0",
+  "description": "HUD en vivo para Euro Truck Simulator 2 / American Truck Simulator: usá una tablet o celular como tablero del camión",
+  "main": "server.js",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "demo": "node server.js --demo"
+  },
+  "dependencies": {
+    "trucksim-telemetry": "^1.0.0",
+    "ws": "^8.18.0"
+  },
+  "license": "MIT",
+  "author": "myzock",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/myzock/ETS2-HUD.git"
+  },
+  "keywords": [
+    "ets2",
+    "ats",
+    "euro-truck-simulator-2",
+    "telemetry",
+    "dashboard",
+    "hud",
+    "tablet"
+  ]
+}

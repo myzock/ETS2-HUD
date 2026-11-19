@@ -1,0 +1,244 @@
+/* Tablero analógico: estética de cluster nocturno de camión (ámbar sobre negro) */
+
+html, body {
+  margin: 0; padding: 0; height: 100%;
+  background: #050505;
+  color: #ffb547;
+  font-family: "Roboto Condensed", "Roboto", Arial, sans-serif;
+  overflow: hidden;
+  -webkit-user-select: none; user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#cluster {
+  position: relative;
+  height: 100%;
+  display: -webkit-box; display: -webkit-flex; display: flex;
+  -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
+  background: #070604;
+}
+
+.tiny { font-size: 2.2vh; letter-spacing: 0.18em; color: #8a6a3a; }
+.small { font-size: 2.6vh; }
+.dim { color: #8a6a3a; }
+.hidden { display: none !important; }
+
+/* ---------- testigos ----------
+   Como en ETS2: cada testigo aparece solo cuando está activo.
+   La fila tiene alto fijo para que el tablero no "salte". */
+.lamps {
+  position: relative;
+  display: -webkit-box; display: -webkit-flex; display: flex;
+  -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center;
+  -webkit-box-align: center; -webkit-align-items: center; align-items: center;
+  padding: 1.8vh 9vw 0;
+  height: 8vh;
+}
+.grp {
+  display: -webkit-box; display: -webkit-flex; display: flex;
+  -webkit-box-align: center; -webkit-align-items: center; align-items: center;
+}
+.tt {
+  display: none;                /* apagado: no se muestra */
+  width: 5.2vh; height: 5.2vh;
+  margin: 0 0.5vw;
+}
+.tt.on { display: inline-block; }
+/* intermitentes fijos en los costados para que no muevan al resto */
+.tt.arrow { position: absolute; top: 1.4vh; width: 6.5vh; height: 6.5vh; margin: 0; }
+#i-left  { left: 2vw; }
+#i-right { right: 2vw; }
+.tt svg {
+  width: 100%; height: 100%; display: block;
+  fill: none; stroke: currentColor; stroke-width: 1.8;
+  stroke-linecap: round; stroke-linejoin: round;
+  overflow: visible;
+}
+.tt svg .fill { fill: currentColor; stroke: none; }
+.tt svg text {
+  fill: currentColor; stroke: none; text-anchor: middle;
+  font-family: Arial, sans-serif; font-weight: bold;
+}
+.tt.on.green { color: #4dff9a; }
+.tt.on.blue  { color: #6ab4ff; }
+.tt.on.amber { color: #ffc233; }
+.tt.on.red   { color: #ff4a3d; }
+
+/* ---------- relojes ---------- */
+.gauges {
+  -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;
+  display: -webkit-box; display: -webkit-flex; display: flex;
+  -webkit-box-align: center; -webkit-align-items: center; align-items: center;
+  -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center;
+}
+.gauge {
+  position: relative;
+  width: 64vh; height: 64vh;
+  max-width: 40vw; max-height: 40vw;
+}
+.gauge svg { width: 100%; height: 100%; display: block; }
+
+.track, .arc {
+  fill: none;
+  stroke-width: 6;
+  stroke-linecap: butt;
+}
+.track { stroke: #1d1710; stroke-dasharray: 414.69 552.92; }
+.arc { stroke: #ffb547; }
+.arc.over { stroke: #ff3b30; }
+.arc.rpm.green { stroke: #3ddc84; }
+.arc.rpm.red { stroke: #ff3b30; }
+
+.tick { stroke: #6b5332; stroke-width: 1; }
+.tick.major { stroke: #ffb547; stroke-width: 2; }
+.tick.redzone { stroke: #ff3b30; }
+.tick-label { fill: #ffb547; font-size: 11px; text-anchor: middle; font-family: inherit; }
+
+.needle { stroke: #ff6a1a; stroke-width: 3; stroke-linecap: round; }
+.hub { fill: #2a2016; stroke: #ff6a1a; stroke-width: 2; }
+.mark { stroke-width: 4; }
+.limit-mark { stroke: #ff3b30; }
+.cc-mark { stroke: #3ddc84; }
+
+.readout {
+  position: absolute;
+  left: 0; right: 0; bottom: 14%;
+  text-align: center;
+}
+.value { font-size: 10vh; font-weight: bold; line-height: 1; color: #ffd9a0; }
+.value.small { font-size: 7vh; }
+.value.over { color: #ff3b30; }
+.unit { font-size: 2.4vh; color: #8a6a3a; letter-spacing: 0.1em; }
+
+/* ---------- centro ---------- */
+.center {
+  width: 16vw;
+  text-align: center;
+  display: -webkit-box; display: -webkit-flex; display: flex;
+  -webkit-box-orient: vertical; -webkit-flex-direction: column; flex-direction: column;
+  -webkit-box-align: center; -webkit-align-items: center; align-items: center;
+}
+.limit {
+  width: 10vh; height: 10vh; line-height: 8vh;
+  border: 1vh solid #e53935; border-radius: 50%;
+  background: #fff; color: #111;
+  font-size: 4.2vh; font-weight: bold;
+  box-sizing: border-box;
+  margin-bottom: 2vh;
+}
+.gear-box {
+  border: 2px solid #ffb547;
+  border-radius: 1.5vh;
+  padding: 1vh 2vw 0;
+  min-width: 10vw;
+}
+.gear { font-size: 14vh; font-weight: bold; line-height: 1.05; color: #ffd9a0; }
+.cc {
+  margin-top: 2vh;
+  font-size: 3.6vh; font-weight: bold;
+  color: #3ddc84; border: 2px solid #3ddc84;
+  border-radius: 1vh; padding: 0.4vh 1vw;
+  display: -webkit-box; display: -webkit-flex; display: flex;
+  -webkit-box-align: center; -webkit-align-items: center; align-items: center;
+}
+.cc svg {
+  width: 4.4vh; height: 4.4vh; margin-right: 0.6vw;
+  fill: none; stroke: currentColor; stroke-width: 2;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.cc svg .fill { fill: currentColor; stroke: none; }
+.clock { margin-top: 2vh; font-size: 3.6vh; letter-spacing: 0.12em; }
+
+/* ---------- tira de ruta ---------- */
+.strip {
+  display: -webkit-box; display: -webkit-flex; display: flex;
+  -webkit-box-align: center; -webkit-align-items: center; align-items: center;
+  border-top: 1px solid #2a2016;
+  background: #000;
+  padding: 1.8vh 1vw 2vh;
+}
+.cell {
+  -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;
+  text-align: center;
+  border-right: 1px solid #2a2016;
+  padding: 0 0.8vw;
+  overflow: hidden;
+}
+.cell:last-child { border-right: 0; }
+.cell.wide { -webkit-box-flex: 1.7; -webkit-flex: 1.7; flex: 1.7; }
+.big {
+  font-size: 4vh; font-weight: bold; color: #ffd9a0;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.strip .small { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.big.warn { color: #ffb300; }
+.big.late { color: #ff3b30; }
+
+.fuelbar {
+  height: 2.6vh; margin: 1vh 0 0.6vh;
+  background: #1d1710; border-radius: 1.3vh; overflow: hidden;
+}
+.fuelfill { height: 100%; width: 0; background: #ffb547; }
+.fuelfill.low { background: #ff3b30; }
+
+/* ---------- varios ---------- */
+.switch {
+  position: absolute; right: 1.5vw; bottom: 22vh;
+  font-size: 3.5vh; color: #3a2d1c; text-decoration: none;
+}
+.overlay {
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(5, 5, 5, 0.9);
+  text-align: center; padding-top: 40vh;
+  font-size: 5vh; color: #ffb547;
+}
+.overlay .hint { font-size: 2.8vh; color: #8a6a3a; margin-top: 2vh; }
+
+/* =====================================================================
+   TEMA: blanco con agujas rojas (estilo tablero europeo)
+   Va al final para pisar los colores ámbar de arriba.
+   ===================================================================== */
+html, body { color: #e9eef2; }
+#cluster { background: #050607; }
+.tiny, .dim, .unit { color: #7d8893; }
+
+.track { stroke: #1a1d21; }
+.arc { stroke: #e9eef2; }
+.arc.over { stroke: #ffb300; }          /* exceso de velocidad: ámbar */
+.arc.rpm.green { stroke: #3ddc84; }
+.arc.rpm.red { stroke: #ff3b30; }
+
+.tick { stroke: #5d6670; }
+.tick.major { stroke: #f2f5f7; }
+.tick.redzone { stroke: #ff3b30; }
+.tick-label { fill: #f2f5f7; }
+
+.needle { stroke: #ff2a1f; }
+.hub { fill: #1a1d21; stroke: #ff2a1f; }
+
+.value { color: #ffffff; }
+.value.over { color: #ffb300; }
+
+.gear-box { border-color: #e9eef2; }
+.gear { color: #ffffff; }
+.clock { color: #e9eef2; }
+
+.strip { border-top-color: #1f2328; }
+.cell { border-right-color: #1f2328; }
+.big { color: #ffffff; }
+.fuelsegs {
+  display: -webkit-box; display: -webkit-flex; display: flex;
+  height: 3vh; margin: 1vh 0 0.6vh;
+}
+.seg {
+  -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;
+  margin: 0 0.18vw;
+  background: #1a1d21;
+  border-radius: 0.3vh;
+}
+.seg.on { background: #e9eef2; }
+.seg.on.mid { background: #ffb300; }   /* 30% o menos */
+.seg.on.low { background: #ff3b30; }   /* aviso de reserva del juego */
+
+.overlay { color: #e9eef2; }
+.overlay .hint { color: #7d8893; }
